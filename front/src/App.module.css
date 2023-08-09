@@ -1,0 +1,69 @@
+.App {
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-image: url("https://cdn.vox-cdn.com/thumbor/ArWQyHg65PJXBIxo1yoA7RqiSII=/0x0:1584x891/1820x1213/filters:focal(841x310:1093x562):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/71950445/rick_and_morty_s4_image.0.png");
+}
+
+.listItem {
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+   flex-wrap: wrap;
+  justify-content: center;
+   width: auto;
+   background-color: #fcff4f;
+   padding: 1em;
+   margin: 5px;
+   font-weight: 500;
+   border-radius: 30px;
+ }
+
+ .searchBar {
+   display: flex;
+   justify-content: flex-start;
+   width: 100vw;
+   padding-left: 20px;
+   padding-top: 20px;
+   padding-bottom: 30px;
+ }
+
+ .cardWrapper{
+   width: 15vw;
+   padding: 1em;
+}
+
+.imgContainer {
+   position: relative;
+
+}
+
+.buttonCard {
+   position: absolute;
+   top: 10%;
+   left: 75%;
+   transform: scale(.8) translate(100%, -100%);
+   background-color: lightslategrey;
+   color: whitesmoke;
+}
+
+.buttonCard:hover{
+   background-color: #555;
+}
+
+.imgCard {
+   max-width: 100%;
+   max-height: 100%;
+   border-radius: 5%;
+}
+
+.cardTitle {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   cursor: pointer;
+}

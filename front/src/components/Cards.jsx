@@ -1,7 +1,8 @@
 import Card from './Card';
+import style from '../App.module.css'
 
 export default function Cards(props) {
-   return <div className='App'>
+   return <div className={style.listItem}>
       {props.characters.map((character,i) => (<Card
             id={character.id}
             name={character.name}
