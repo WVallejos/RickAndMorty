@@ -21,16 +21,18 @@ export default function Card(props) {
             <img className={style.imgCard} src={props.image} alt='' />
          </div>
          <div className='accordion'>
-            <div className='item'>
-               <div className={style.cardTitle} onClick={() => toggle(props.id)}>
-                  <h2>{props.name}</h2>
-                  <h2>{selected === props.id ? '-' : '+'}</h2>
+            <div>
+               <div className={style.cardHeader } onClick={() => toggle(props.id)}>
+                  <h2 className={style.cardTitle}>{props.name}</h2>
+                  <h2 className={style.cardTitle}>{selected === props.id ? '-' : '+'}</h2>
                </div>
                <div className={selected === props.id ? 'content show' : 'content'}>
-                  <h3>{props.status}</h3>
-                  <h3>{props.species}</h3>
-                  <h3>{props.gender}</h3>
-                  <h3>{props.origin}</h3>
+                  <div className={style.contentCard}>
+                     <span className={style.cardItem}>{props.status}</span>
+                     <span className={style.cardItem}>{props.species}</span>
+                     <span className={style.cardItem}>{props.gender}</span>
+                     <span className={style.cardItem}>{props.origin}</span>
+                  </div>
                </div>
             </div>
          </div>

@@ -15,6 +15,7 @@ function App() {
    return (
       <div className={style.App}>
          <SearchBar onSearch={(characterID) => window.alert(characterID)} />
+         <img className={style.header} src='https://www.freepnglogos.com/uploads/rick-and-morty-png/list-rick-and-morty-episodes-wikipedia-24.png' />
          <Cards characters={characters} />
          {/* <Card
             id={Rick.id}
