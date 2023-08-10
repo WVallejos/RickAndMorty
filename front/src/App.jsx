@@ -1,22 +1,47 @@
 import style from './App.module.css';
-import Card from './components/Card.jsx';
-import Cards from './components/Cards.jsx';
-import SearchBar from './components/SearchBar.jsx';
-import characters, { Rick } from './data.js';
-import styled from 'styled-components'
-
-const DivApp = styled.div`
-
-`
-
-
+// import Card from './components/Card/Card';
+import Cards from './components/Cards/Cards';
+import Nav from './components/Nav/Nav';
+import { useState } from 'react';
+import axios from 'axios';
+   
 
 function App() {
+
+   const [characters, setCharacters] = useState([])
+
+   const example = {
+      id: 1,
+      name: 'Rick Sanchez',
+      status: 'Alive',
+      species: 'Human',
+      gender: 'Male',
+      origin: {
+         name: 'Earth (C-137)',
+         url: 'https://rickandmortyapi.com/api/location/1',
+      },
+      image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+   };
+
+   function onSearch(id) {
+      axios(`https://rym2-production.up.railway.app/api/character/${id}?key=henrym-wvallejos`).then(({ data }) => {
+         if (data.name && !(characters.some(item => item.id === data.id))) {
+            setCharacters((oldChars) => [...oldChars, data]);
+         } else {
+            window.alert('¡No hay personajes con este ID o el personaje ya fue agregado !');
+         }
+      });
+   }
+
+   function onClose(id) {
+      const filtered = characters.filter((el) => el.id != parseInt(id))
+      setCharacters(filtered)
+   }
+
    return (
       <div className={style.App}>
-         <SearchBar onSearch={(characterID) => window.alert(characterID)} />
-         <img className={style.header} src='https://www.freepnglogos.com/uploads/rick-and-morty-png/list-rick-and-morty-episodes-wikipedia-24.png' />
-         <Cards characters={characters} />
+         <Nav onSearch = {(id) => onSearch(id) } />
+         <Cards characters={characters} onClose={(id)=>onClose(id)} />
          {/* <Card
             id={Rick.id}
             name={Rick.name}

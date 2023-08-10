@@ -1,6 +1,6 @@
-import style from '../App.module.css'
+import style from './Card.module.css'
 import { useState } from 'react'
-import '../index.css'
+import '../../index.css'
 
 
 export default function Card(props) {
@@ -17,7 +17,7 @@ export default function Card(props) {
    return (
       <div className={style.cardWrapper}>
          <div className={style.imgContainer}>
-            <button className={style.buttonCard} onClick={props.onClose}>X</button>
+            <button className={style.buttonCard} onClick={()=> props.onClose(props.id)}>X</button>
             <img className={style.imgCard} src={props.image} alt='' />
          </div>
          <div className='accordion'>

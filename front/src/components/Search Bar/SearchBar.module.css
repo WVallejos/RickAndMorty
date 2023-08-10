@@ -1,0 +1,8 @@
+.searchBar {
+    display: flex;
+    justify-content: flex-start;
+    width: 100vw;
+    padding-left: 20px;
+    padding-top: 20px;
+  }
+ 

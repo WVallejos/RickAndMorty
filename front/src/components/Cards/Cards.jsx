@@ -1,5 +1,5 @@
-import Card from './Card';
-import style from '../App.module.css'
+import Card from '../Card/Card';
+import style from './Cards.module.css'
 
 export default function Cards(props) {
    return <div className={style.listItem}>
@@ -11,7 +11,7 @@ export default function Cards(props) {
             gender={character.gender}
             origin={character.origin.name}
             image={character.image}
-            onClose={() => window.alert('Emulamos que se cierra la card')}
+            onClose={(id) => props.onClose(id)}
             key = {i}
          />))}
    </div>;
