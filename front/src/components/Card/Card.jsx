@@ -1,6 +1,7 @@
 import style from './Card.module.css'
 import { useState } from 'react'
 import '../../index.css'
+import { NavLink } from 'react-router-dom'
 
 
 export default function Card(props) {
@@ -28,10 +29,12 @@ export default function Card(props) {
                </div>
                <div className={selected === props.id ? 'content show' : 'content'}>
                   <div className={style.contentCard}>
-                     <span className={style.cardItem}>{props.status}</span>
-                     <span className={style.cardItem}>{props.species}</span>
-                     <span className={style.cardItem}>{props.gender}</span>
-                     <span className={style.cardItem}>{props.origin}</span>
+                     <span className={style.cardItem}>Gender: {props.gender}</span>
+                     <span className={style.cardItem}>Species: {props.species}</span>
+                     <span className={style.cardItem}>Status: {props.status}</span>
+                     <NavLink to={`/detail/${props.id}`} style={({isActive}) => isActive ? {color: 'white'} : {color:'white'}}>
+                     <span className={style.cardItem}>Ver mas...</span>
+                     </NavLink>
                   </div>
                </div>
             </div>

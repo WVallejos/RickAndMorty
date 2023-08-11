@@ -7,3 +7,12 @@
 .headerImg{
     width: 25vw;
 }
+
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    width: 85vw;
+    background-color:rgb(48, 141, 67, 0.4);
+    border-radius: 20px;
+    padding: 0;
+}

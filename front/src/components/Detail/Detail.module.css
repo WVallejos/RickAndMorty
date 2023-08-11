@@ -1,0 +1,38 @@
+.detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85vw;
+    color: aliceblue;
+    font-family: 'rick-and-morty';
+    margin: 5%;
+}
+
+.detailName {
+    text-align: center;
+   
+    text-transform: uppercase;
+}
+
+.detailItems {
+    background-color:rgb(48, 141, 67, 0.8);
+    width: 50%;
+}
+
+.detailItem {
+    padding: .5em;
+    display: flex;
+    justify-content: space-between;
+    font-size: 150%;
+}
+
+.detailImg {
+    width: 25%;
+}
+
+.detailImg img {
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
