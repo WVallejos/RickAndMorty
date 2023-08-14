@@ -4,20 +4,47 @@ import Nav from './components/Nav/Nav';
 import Detail from './components/Detail/Detail'
 import About from './components/About/About'
 import Error from './components/Error/Error';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import Form from './components/Form/Form';
 
 
 
 
 function App() {
 
+      // simulation of login and user validation
+   const [wronguser, setWronguser] = useState(false)
+   const [access, setAccess] = useState(false)
+   const EMAIL = 'guille@awesome.com'
+   const PASSWORD = 'awesome10'
+   const navigate = useNavigate()
+
+   function login(userData) {
+      console.log(userData)
+      if (userData.password === PASSWORD && userData.email === EMAIL) {
+         setAccess(true);
+         navigate('/home');
+      } else {
+         setWronguser(true)
+      }
+   }
+
+   function logout() {
+      setAccess(false)
+      navigate('/')
+   }
+
+   //variable que ayuda para el conditional rendering, en caso de que isLogin sea true, el nav no se renderiza
+   const location = useLocation()
+   const isLogin = location.pathname === '/'
+
+
    const [characters, setCharacters] = useState([])
 
-
-
    function onSearch(id) {
+      console.log(location.pathname)
       if (isNaN(Number(id))) return window.alert('ingresa un ID numerico !')
       if (!id) return window.alert('Ingresa un ID !')
       if ((characters.some(item => item.id === parseInt(id)))) {
@@ -39,11 +66,18 @@ function App() {
       setCharacters(filtered)
    }
 
+   useEffect (() => {
+      console.log('access: ' + access);
+      //console.log(userData);
+      !access && navigate('/')
+   }, [access]) //runs again if access is different
+
    return (
       <div className={style.App}>
-         <Nav onSearch={(id) => onSearch(id)} />
+         {!isLogin && <Nav onSearch={(id) => onSearch(id)} logout={logout} />}
          <Routes>
-            <Route path="/" element={<Cards characters={characters} onClose={(id) => onClose(id)} />} />
+            <Route path='/' element={<Form login={login} wronguser={wronguser} />} />
+            <Route path="/home" element={<Cards characters={characters} onClose={(id) => onClose(id)} />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<Error />} />
