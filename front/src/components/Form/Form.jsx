@@ -13,8 +13,9 @@ export default function Form(props) {
     const handleChange = (event) => {
         const {name, value} = event.target
         setUserData({...userData,[name]:value})
+        // de forma dinamica, en caso de que sean varios inputs que cambiar
+        // setUserData({...userData, [event.target.name] : event.target.value})
         setErrors(validateInputs(event.target, errors))
-        console.log(errors);
     }
 
     const handleSubmit = (evento) => {
@@ -26,11 +27,11 @@ export default function Form(props) {
     return <div className={styles.loginContainer} >
             <img src={loginpic} alt="logo" className={styles.loginImg} ></img>
             <form className={styles.loginForm} onSubmit={handleSubmit} >
-                <label for='email' className={styles.label}>Email</label>
-                <input className={styles.inputField} type="text" name="email" value={userData.email} placeholder="Email" onChange={handleChange}/>
+                <label htmlFor='email' className={styles.label}>Email</label>
+                <input className={styles.inputField} type="text" id='email' name="email" value={userData.email} placeholder="Email" onChange={handleChange}/>
                 {errors.email && <small className={styles.small} >{errors.email}</small>}
-                <label for='password' className={styles.label}>Password</label>
-                <input className={styles.inputField} type="text" name="password" value={userData.password} placeholder="Password" onChange={handleChange}/>
+                <label htmlFor='password' className={styles.label}>Password</label>
+                <input className={styles.inputField} type="password" id='passwordx`' name="password" value={userData.password} placeholder="Password" onChange={handleChange}/>
                 {errors.password && <small className={styles.small} >{errors.password}</small>}
                 <input className={styles.submit} type="submit" value='Log In'/>
                 {props.wronguser && <small className={styles.small} >'the username or password are incorrect'</small>}
