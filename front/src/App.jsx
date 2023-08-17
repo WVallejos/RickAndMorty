@@ -69,10 +69,10 @@ function App({removeFav}) {
 
    }
    
-   useEffect (() => {
-      //console.log(userData);
-      !access && navigate('/')
-   }, [access]) //runs again if access is different
+   // useEffect (() => {
+   //    //console.log(userData);
+   //    !access && navigate('/')
+   // }, [access]) //runs again if access is different
    
    const location = useLocation()
    const isLogin = location.pathname === '/'

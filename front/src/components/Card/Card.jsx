@@ -1,7 +1,7 @@
 import style from './Card.module.css'
 import { useState, useEffect } from 'react'
 import '../../index.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { addFav, removeFav } from '../../redux/action-creators'
 import { connect } from 'react-redux'
 
@@ -39,11 +39,14 @@ function Card(props) {
       });
    }, [props.myFavorites]);
 
+   const location = useLocation()
+
+
    return (
 
       <div className={style.cardWrapper}>
          <div className={style.imgContainer}>
-            { props.onClose ? (<button className={style.buttonCard} onClick={() => props.onClose(props.id)}>X</button>) : null}
+            { location.pathname === '/home' && (<button className={style.buttonCard} onClick={() => props.onClose(props.id)}>X</button>)}
             <img className={style.imgCard} src={props.image} alt='' />
          </div>
          <div className='accordion'>

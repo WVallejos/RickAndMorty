@@ -11,7 +11,7 @@ export default function Cards(props) {
             gender={character.gender}
             origin={character.origin.name}
             image={character.image}
-            onClose={props.onClose ? (id) => props.onClose(id) : false}
+            onClose={(id) => props.onClose(id)}
             key = {i}
          />))}
    </div>;
