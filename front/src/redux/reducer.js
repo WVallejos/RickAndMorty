@@ -1,4 +1,4 @@
-import { ADD_FAV, FILTER, ORDER, REMOVE_FAV } from "./action-types";
+import { ADD_FAV, FILTER, ORDER, REMOVE_FAV, RESET } from "./action-types";
 
 const initialState = {
     myFavorites: [],
@@ -23,20 +23,23 @@ const rootReducer = (state = initialState, action) => {
             console.log(state.myFavorites);
             return {
                 ...state,
-                allCharacters: [...state.allCharacters],
                 myFavorites: state.allCharacters.filter((f) => f.gender === action.payload)
 
             }
         case ORDER:
             let orderFunction =
                 action.payload === 'ASC'
-                    ? (a, b) => { return a.name > b.name ? 1 : -1 } //ASC
-                    : (a, b) => { return a.name < b.name ? 1 : -1 } //DESC
+                    ? (a, b) => { return a.id > b.id ? 1 : -1 } //ASC
+                    : (a, b) => { return a.id < b.id ? 1 : -1 } //DESC
             return {
                 ...state,
-                allCharacters: [...state.allCharacters],
                 myFavorites: [...state.myFavorites.sort(orderFunction)]
 
+            }
+        case RESET:
+            return {
+                ...state,
+                myFavorites: [...state.allCharacters]
             }
         default:
             return {

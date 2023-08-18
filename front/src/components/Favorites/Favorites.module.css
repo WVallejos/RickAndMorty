@@ -1,0 +1,28 @@
+.filters {
+    display: flex;
+    justify-content:space-around;
+    width: 70vw;
+
+}
+
+.inputs {
+    display: flex;
+}
+
+.inputs select {
+    margin: 10px;
+}
+
+.button {
+    background-color: #f96e4d;
+    border: 0;
+    padding: 11px 22px;
+    height: fit-content;
+    border-radius: 50px;
+    color: #fff;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: 900;
+    text-decoration: none;
+    font-family: 'rick-and-morty'
+  }
