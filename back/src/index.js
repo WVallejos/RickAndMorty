@@ -1,23 +1,24 @@
 const http = require('http');
-const characters = require('./utils/data')
+const getCharById = require('./controllers/getCharById') 
 
 http.createServer(function(req, res) {
 
     res.setHeader('Access-Control-Allow-Origin', '*');
-    console.log(characters);
-    // const characters = fs.readFileSync(__dirname + '/utils/data.js')
     const {url} = req;
-    
+    // const characters = fs.readFileSync(__dirname + '/utils/data.js')
     if(url.includes("/rickandmorty/character/")){
         const id = url.split('/').at(-1);
-        const character = characters.find((char) => char.id === Number(id))
-        if (character) {
-            res.writeHead(200, { "Content-Type": "application/json"})
-            return res.end(JSON.stringify(character))
-        } else {
-            res.writeHead(404, { "Content-Type": "application/json"})
-            return res.end(JSON.stringify({error: "Character Not Found"}))
-        }
+        getCharById(res, id)
+
+        // HW de web server, para promises usamos el controller
+        // const character = characters.find((char) => char.id === Number(id))
+        // if (character) {
+        //     res.writeHead(200, { "Content-Type": "application/json"})
+        //     return res.end(JSON.stringify(character))
+        // } else {
+        //     res.writeHead(404, { "Content-Type": "application/json"})
+        //     return res.end(JSON.stringify({error: "Character Not Found"}))
+        // }
 
     }
 

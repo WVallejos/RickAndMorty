@@ -31,8 +31,12 @@ function Card(props) {
    }
 
    useEffect(() => {
+      console.log('cambio');
       console.log(props.myFavorites);
+      setIsFav(false)
       props.myFavorites.forEach((fav) => {
+         console.log(isFav);
+         console.log(props.id);
          if (fav.id === props.id) {
             setIsFav(true);
          }

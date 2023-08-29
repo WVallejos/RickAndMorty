@@ -10,6 +10,10 @@ function ItemsAbout({ label, value }) {
         </div>
 }
 
+
+
+
+
 export default function About(props) {
     return <div className={styles.detail} >
         <div className={styles.detailItems}>

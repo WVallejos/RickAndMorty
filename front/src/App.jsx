@@ -52,7 +52,7 @@ function App({removeFav}) {
          return window.alert('Ese personaje ya fue agregado !')
       }
       
-      axios(`https://rym2-production.up.railway.app/api/character/${id}?key=henrym-wvallejos`).then(({ data }) => {
+      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
          }
@@ -63,16 +63,16 @@ function App({removeFav}) {
    
    
    function onClose(id) {
+      removeFav(id)
       const filtered = characters.filter((el) => el.id != parseInt(id))
       setCharacters(filtered)
-      removeFav(id)
 
    }
    
-   // useEffect (() => {
-   //    //console.log(userData);
-   //    !access && navigate('/')
-   // }, [access]) //runs again if access is different
+   useEffect (() => {
+      //console.log(userData);
+      !access && navigate('/')
+   }, [access]) //runs again if access is different
    
    const location = useLocation()
    const isLogin = location.pathname === '/'

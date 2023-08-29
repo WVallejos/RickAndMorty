@@ -1,4 +1,4 @@
-import { ADD_FAV, FILTER, ORDER, REMOVE_FAV, RESET } from "./action-types";
+import { ADD_FAV, FILTER, ORDER, REMOVE_FAV, RESET } from "./action-types.js";
 
 const initialState = {
     myFavorites: [],
@@ -17,7 +17,8 @@ const rootReducer = (state = initialState, action) => {
         case REMOVE_FAV:
             return {
                 ...state,
-                myFavorites: state.myFavorites.filter((f) => f.id !== Number(action.payload))
+                myFavorites: state.myFavorites.filter((f) => f.id !== Number(action.payload)),
+                allCharacters: state.myFavorites.filter((f) => f.id !== Number(action.payload))
             }
         case FILTER:
             console.log(state.myFavorites);
