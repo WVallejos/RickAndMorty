@@ -20,18 +20,28 @@ function App({removeFav}) {
       // simulation of login and user validation
    const [wronguser, setWronguser] = useState(false)
    const [access, setAccess] = useState(false)
-   const EMAIL = 'guille@awesome.com'
-   const PASSWORD = 'awesome10'
+   // const EMAIL = 'guille@awesome.com'
+   // const PASSWORD = 'awesome10'
    const navigate = useNavigate()
 
+   // function login(userData) {
+   //    console.log(userData)
+   //    if (userData.password === PASSWORD && userData.email === EMAIL) {
+   //       setAccess(true);
+   //       navigate('/home');
+   //    } else {
+   //       setWronguser(true)
+   //    }
+   // }
    function login(userData) {
-      console.log(userData)
-      if (userData.password === PASSWORD && userData.email === EMAIL) {
-         setAccess(true);
-         navigate('/home');
-      } else {
+      const { email, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const { access } = data;
+         setAccess(data);
+         access && navigate('/home');
          setWronguser(true)
-      }
+      });
    }
 
    function logout() {
