@@ -1,20 +1,29 @@
 
 const axios = require('axios')
+const errorHandler = require('../utils/errors')
 const API_KEY = 'henrym-wvallejos'
 const URL = 'https://rym2-production.up.railway.app/api/character/'
 
 
-function getCharById(req, res) {
+const getCharById = async (req, res) => {
 
-    const { id } = req.params
-    axios(`${URL}${id}?key=${API_KEY}`)
-    .then(
-        ({data}) => {
-       if(data) res.json(data)
-       else res.status(404).json({message: 'Not Found'})
-        }
-        )
-    .catch((error) => res.status(500).json({message: error.message}))
+    // const { id } = req.params
+    // axios(`${URL}${id}?key=${API_KEY}`)
+    // .then(
+    //     ({data}) => {
+    //    if(data) res.json(data)
+    //    else res.status(404).json({message: 'Not Found'})
+    //     }
+    //     )
+    // .catch((error) => res.status(500).json({message: error.message}))
+
+    try {
+        const { id } = req.params
+        const {data} = await axios(`${URL}${id}?key=${API_KEY}`)
+        res.status(200).json(data)
+    } catch (error) {
+        errorHandler(res, error)
+    }
 
 
 }

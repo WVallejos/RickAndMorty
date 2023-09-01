@@ -62,9 +62,9 @@ function Card(props) {
                </div>
                <div className={selected === props.id ? 'content show' : 'content'}>
                   <div className={style.contentCard}>
+                     <span className={style.cardItem}>ID: {props.id}</span>
                      <span className={style.cardItem}>Gender: {props.gender}</span>
                      <span className={style.cardItem}>Species: {props.species}</span>
-                     <span className={style.cardItem}>Status: {props.status}</span>
                      <NavLink to={`/detail/${props.id}`} style={({ isActive }) => isActive ? { color: 'white' } : { color: 'white' }}>
                         <span className={style.cardItem}>Ver mas...</span>
                      </NavLink>

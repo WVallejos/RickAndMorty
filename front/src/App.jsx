@@ -15,14 +15,13 @@ import { connect } from 'react-redux';
 
 
 
-function App({removeFav}) {
-
-      // simulation of login and user validation
+function App({ removeFav }) {
+   const URL_BASE = 'http://localhost:3001/rickandmorty'
    const [wronguser, setWronguser] = useState(false)
    const [access, setAccess] = useState(false)
-   // const EMAIL = 'guille@awesome.com'
-   // const PASSWORD = 'awesome10'
+   const [characters, setCharacters] = useState([])
    const navigate = useNavigate()
+   
 
    // function login(userData) {
    //    console.log(userData)
@@ -33,15 +32,24 @@ function App({removeFav}) {
    //       setWronguser(true)
    //    }
    // }
-   function login(userData) {
+   async function login(userData) {
       const { email, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+      // axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+      //    const { access } = data;
+      //    setAccess(data);
+      //    access && navigate('/home');
+      //    setWronguser(true)
+      // });
+      try {
+         const { data } = await axios(`${URL_BASE}/login?email=${email}&password=${password}`)
          const { access } = data;
          setAccess(data);
          access && navigate('/home');
+      } catch (error) {
+         console.log(error);
          setWronguser(true)
-      });
+
+      }
    }
 
    function logout() {
@@ -50,43 +58,47 @@ function App({removeFav}) {
    }
 
    //variable que ayuda para el conditional rendering, en caso de que isLogin sea true, el nav no se renderiza
-   
-   
-   const [characters, setCharacters] = useState([])
-   
-   function onSearch(id) {
-      console.log(location.pathname)
+
+
+
+   async function onSearch(id) {
       if (isNaN(Number(id))) return window.alert('ingresa un ID numerico !')
       if (!id) return window.alert('Ingresa un ID !')
       if ((characters.some(item => item.id === parseInt(id)))) {
          return window.alert('Ese personaje ya fue agregado !')
       }
-      
-      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
-         if (data.name) {
-            setCharacters((oldChars) => [...oldChars, data]);
-         }
-      })
-      .catch(err => alert(err.response.data.error));
+      // Promesas
+      // axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
+      //    if (data.name) {
+      //       setCharacters((oldChars) => [...oldChars, data]);
+      //    }
+      // })
+      // .catch(err => alert(err.response.data.error));
+
+      try {
+         const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`)
+         setCharacters((oldChars) => [...oldChars, data]);
+      } catch (error) {
+         alert(error.response.data)
+      }
    }
-   
-   
-   
+
+
    function onClose(id) {
       removeFav(id)
       const filtered = characters.filter((el) => el.id != parseInt(id))
       setCharacters(filtered)
 
    }
-   
-   useEffect (() => {
-      //console.log(userData);
-      !access && navigate('/')
-   }, [access]) //runs again if access is different
-   
+
+   // useEffect (() => {
+   //    console.log(access);
+   //    !access && navigate('/')
+   // }, [access]) //runs again if access is different
+
    const location = useLocation()
    const isLogin = location.pathname === '/'
-   
+
    return (
       <div className={style.App}>
          {!isLogin && <Nav onSearch={(id) => onSearch(id)} logout={logout} />}

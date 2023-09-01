@@ -26,3 +26,11 @@
     text-decoration: none;
     font-family: 'rick-and-morty'
   }
+
+  .filter {
+    margin: 5px;
+    width: 10vw;
+    border-radius: 20px;
+    border-color: black;
+    border-width: 3px;
+  }

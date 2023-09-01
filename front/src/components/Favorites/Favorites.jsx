@@ -1,22 +1,26 @@
 import { connect } from "react-redux"
 import Cards from "../Cards/Cards"
-import { filtrarCards, ordenarCards, resetCards } from "../../redux/action-creators"
+import { filtrarCards, getFav, ordenarCards, resetCards } from "../../redux/action-creators"
 import { useDispatch } from "react-redux"
 import styles from './Favorites.module.css'
+import { useEffect, useState } from "react"
 
 function Favorites({myFavorites}) {
 
     const dispatch = useDispatch()
+    const [selectedOrder, SetSelectedOrder] = useState('')
+    const [selectedFilter, SetSelectedFilter] = useState('')
 
     const handleOrder = (evento) => {
+        SetSelectedOrder(evento.target.value)
         if (evento.target.value === 'All') {
             dispatch(resetCards())
         } else{
-        dispatch(ordenarCards(evento.target.value))}
-    }
-
-    const handleFilter = (evento) => {
-        console.log(evento.target.value);
+            dispatch(ordenarCards(evento.target.value))}
+        }
+        
+        const handleFilter = (evento) => {
+        SetSelectedFilter(evento.target.value)
         if (evento.target.value === 'All') {
             dispatch(resetCards())
         } else {
@@ -24,20 +28,26 @@ function Favorites({myFavorites}) {
     }
 
     const handleReset = () => {
+        SetSelectedOrder('')
+        SetSelectedFilter('')
         dispatch(resetCards())
     }
+
+    useEffect(() => {
+        dispatch(getFav())
+    }, [])
 
 
     return <>
     <div className={styles.filters}>
     <div className={styles.inputs}>
-    <select onChange={handleOrder}>
-        <option value="All"> </option>
+    <select value={selectedOrder} className={styles.filter} onChange={handleOrder}>
+        <option value="">No Order </option>
         <option value="ASC">Ascendente</option>
         <option value="DESC">Descendente</option>
     </select>
-    <select onChange={handleFilter}>
-        <option value="All">All</option>    
+    <select value={selectedFilter} className={styles.filter} onChange={handleFilter}>
+        <option value="">All</option>    
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Genderless">Genderless</option>
