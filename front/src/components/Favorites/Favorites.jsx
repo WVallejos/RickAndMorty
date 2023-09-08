@@ -13,7 +13,7 @@ function Favorites({myFavorites}) {
 
     const handleOrder = (evento) => {
         SetSelectedOrder(evento.target.value)
-        if (evento.target.value === 'All') {
+        if (evento.target.value === '') {
             dispatch(resetCards())
         } else{
             dispatch(ordenarCards(evento.target.value))}
@@ -21,7 +21,7 @@ function Favorites({myFavorites}) {
         
         const handleFilter = (evento) => {
         SetSelectedFilter(evento.target.value)
-        if (evento.target.value === 'All') {
+        if (evento.target.value === "") {
             dispatch(resetCards())
         } else {
         dispatch(filtrarCards(evento.target.value))}
@@ -33,9 +33,9 @@ function Favorites({myFavorites}) {
         dispatch(resetCards())
     }
 
-    useEffect(() => {
-        dispatch(getFav())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getFav())
+    // }, [])
 
 
     return <>
