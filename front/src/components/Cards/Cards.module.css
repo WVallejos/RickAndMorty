@@ -1,3 +1,5 @@
+@import url('../Card/Card.module.css');
+
 .listItem {
     display: flex;
     flex-direction: row;
@@ -10,4 +12,8 @@
     font-weight: 500;
     border-radius: 30px;
   }
+
+  .listItem:hover>.cardWraper:not(:hover) {
+    filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+}
  

@@ -27,6 +27,10 @@
     font-family: 'rick-and-morty'
   }
 
+  .button:hover {
+    background-color: #b04e35;
+  }
+
   .filter {
     margin: 5px;
     width: 10vw;

@@ -18,7 +18,7 @@ export default function SearchBar(props) {
 
  function handleClick() {
    const min = 1;
-   const max = 100;
+   const max = 826;
    const rand = Math.floor(min + Math.random() * (max - min));
    props.onSearch(rand)
  }

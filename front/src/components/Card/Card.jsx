@@ -49,7 +49,7 @@ function Card(props) {
    return (
 
       <div className={style.cardWrapper}>
-         <div className={style.imgContainer}>
+         <div onClick={() => toggle(props.id)} className={style.imgContainer}>
             { location.pathname === '/home' && (<button className={style.buttonCard} onClick={() => props.onClose(props.id)}>X</button>)}
             <img className={style.imgCard} src={props.image} alt='' />
          </div>

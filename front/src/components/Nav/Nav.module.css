@@ -30,3 +30,7 @@
     text-decoration: none;
     font-family: 'rick-and-morty'
   }
+
+  .button:hover {
+    background-color: #b04e35;
+  }

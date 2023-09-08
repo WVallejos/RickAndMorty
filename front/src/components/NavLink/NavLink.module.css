@@ -26,3 +26,7 @@
     font-weight: 900;
     text-decoration: none;
   }
+
+  .isInactive:hover {
+    background-color: #b04e35;
+  }

@@ -3,7 +3,8 @@ import style from './Cards.module.css'
 
 export default function Cards(props) {
    return <div className={style.listItem}>
-      {props.characters.map((character,i) => (<Card
+      {props.characters.map((character,i) => (
+      <Card
             id={character.id}
             name={character.name}
             status={character.status}
@@ -13,6 +14,8 @@ export default function Cards(props) {
             image={character.image}
             onClose={(id) => props.onClose(id)}
             key = {i}
-         />))}
+            />
+            ))}
+            
    </div>;
 }

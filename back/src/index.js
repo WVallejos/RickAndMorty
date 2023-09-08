@@ -4,7 +4,7 @@ const cors = require('cors')
 const router = require('./routes/routes')
 const server = express()
 const PORT = 3001
-
+const { conn } = require('./DB_connection');
 
 server.use(morgan('dev'))
 server.use(cors())
@@ -14,9 +14,14 @@ server.use(express.json());
 
 server.use('/rickandmorty', router)
 
-server.listen(PORT, () => {
-    console.log('Server raised in port: ' + PORT);
+conn.sync( { alter: true }).then(()=> {
+
+    server.listen(PORT, () => {
+        console.log('Server raised in port: ' + PORT);
+    })
+    
 })
+
 
 
 

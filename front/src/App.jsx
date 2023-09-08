@@ -45,6 +45,7 @@ function App({ removeFav }) {
          const { access } = data;
          setAccess(data);
          access && navigate('/home');
+         setWronguser(true)
       } catch (error) {
          console.log(error);
          setWronguser(true)
